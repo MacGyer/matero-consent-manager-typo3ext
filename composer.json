@@ -1,0 +1,29 @@
+{
+    "name": "materodev/matero-consent-manager",
+    "version": "1.3.0",
+    "type": "typo3-cms-extension",
+    "description": "Consent Management for Third Party Services",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "homepage": "https://git.matero.dev/project/lofft/lofft-website",
+    "authors": [
+        {
+            "name": "Matero GmbH",
+            "homepage": "https://www.matero.de"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "typo3/cms-core": "~12.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Materodev\\ConsentManager\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "matero_consent_manager"
+        }
+    }
+}

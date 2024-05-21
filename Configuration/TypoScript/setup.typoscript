@@ -1,0 +1,15 @@
+page {
+    includeCSSLibs {
+        tarteaucitron = EXT:matero_consent_manager/Resources/Public/JavaScript/tarteaucitron/css/tarteaucitron.min.css
+        tarteaucitron.forceOnTop = 1
+    }
+
+    includeJSFooterlibs {
+        tarteaucitron = EXT:matero_consent_manager/Resources/Public/JavaScript/tarteaucitron/tarteaucitron.min.js
+        tarteaucitron.disableCompression = 1
+        tarteaucitron.excludeFromConcatenation = 1
+        tarteaucitronServices = EXT:matero_consent_manager/Resources/Public/JavaScript/tarteaucitron.services.extend.js
+        tarteaucitronServices.disableCompression = 1
+        tarteaucitronServices.excludeFromConcatenation = 1
+    }
+}
