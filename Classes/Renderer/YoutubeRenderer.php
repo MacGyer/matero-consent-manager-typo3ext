@@ -5,18 +5,14 @@ namespace Materodev\ConsentManager\Renderer;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 
-/**
- * Class YoutubeRenderer
- * @package Materodev\LofftEvents\Renderer
- */
 class YoutubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
 {
-    public function getPriority()
+    public function getPriority(): int
     {
         return 100;
     }
 
-    public function render(FileInterface $file, $width, $height, array $options = [], $usedPathsRelativeToCurrentScript = false)
+    public function render(FileInterface $file, $width, $height, array $options = []): string
     {
         $options = $this->collectOptions($options, $file);
         $videoId = $this->getVideoIdFromFile($file);
@@ -33,10 +29,10 @@ class YoutubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
         ];
 
         if ((int)$width > 0) {
-            $attributes['data-width'] = (int)$width;
+            $attributes['width'] = (int)$width;
         }
         if ((int)$height > 0) {
-            $attributes['data-height'] = (int)$height;
+            $attributes['height'] = (int)$height;
         }
 
         return sprintf(

@@ -7,57 +7,52 @@ use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperInterface;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
-use TYPO3\CMS\Extbase\Domain\Model\AbstractFileFolder;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class YoutubeViewHelper
- * @package Materodev\ConsentManager\ViewHelpers
- */
-class YoutubeViewHelper extends AbstractTagBasedViewHelper
+class YoutubeViewHelper extends AbstractViewHelper
 {
-    /**
-     * @var OnlineMediaHelperInterface
-     */
-    protected $onlineMediaHelper;
+    protected ?OnlineMediaHelperInterface $onlineMediaHelper = null;
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        parent::initializeArguments();
+        $this->registerArgument('file', FileInterface::class, 'The file to be rendered', escape: false);
     }
 
-    public function canRender(FileInterface $file)
+    public function canRender(FileInterface $file): bool
     {
-        return ($file->getMimeType() === 'video/youtube' || $file->getExtension() === 'youtube') && $this->getOnlineMediaHelper($file) !== false;
+        return ($file->getMimeType() === 'video/youtube' || $file->getExtension() === 'youtube') && $this->getOnlineMediaHelper($file) !== null;
     }
 
-    /**
-     * Get online media helper
-     *
-     * @param FileInterface $file
-     * @return bool|OnlineMediaHelperInterface
-     */
-    protected function getOnlineMediaHelper(FileInterface $file)
+    protected function getOnlineMediaHelper(FileInterface $file): ?OnlineMediaHelperInterface
     {
         if ($this->onlineMediaHelper === null) {
             $orgFile = $file;
             if ($orgFile instanceof FileReference) {
                 $orgFile = $orgFile->getOriginalFile();
             }
+
             if ($orgFile instanceof File) {
-                $this->onlineMediaHelper = OnlineMediaHelperRegistry::getInstance()->getOnlineMediaHelper($orgFile);
-            } else {
-                $this->onlineMediaHelper = false;
+                /** @var OnlineMediaHelperRegistry $registry */
+                $registry = GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
+                $this->onlineMediaHelper = $registry->getOnlineMediaHelper($orgFile);
+            }
+
+            if (false === $this->onlineMediaHelper) {
+                $this->onlineMediaHelper = null;
             }
         }
         return $this->onlineMediaHelper;
     }
 
-    /**
-     * @param FileInterface|AbstractFileFolder $file
-     */
-    public function render($file)
+    public function render(): string
     {
+        $file = $this->arguments['file'] ?? $this->renderChildren();
+
+        if (!$file || !$file instanceof FileInterface) {
+            throw new \InvalidArgumentException('No file provided or must be of type ' . FileInterface::class);
+        }
+
         if ($file instanceof FileReference) {
             $orgFile = $file->getOriginalFile();
         } else {

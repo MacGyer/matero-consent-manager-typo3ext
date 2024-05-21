@@ -5,18 +5,14 @@ namespace Materodev\ConsentManager\Renderer;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 
-/**
- * Class VimeoRenderer
- * @package Materodev\ConsentManager\Renderer
- */
 class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
 {
-    public function getPriority()
+    public function getPriority(): int
     {
         return 100;
     }
 
-    public function render(FileInterface $file, $width, $height, array $options = [], $usedPathsRelativeToCurrentScript = false)
+    public function render(FileInterface $file, $width, $height, array $options = []): string
     {
         $options = $this->collectOptions($options, $file);
         $videoId = $this->getVideoIdFromFile($file);

@@ -3,6 +3,7 @@
 use Materodev\ConsentManager\Renderer\VimeoRenderer;
 use Materodev\ConsentManager\Renderer\YoutubeRenderer;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 defined('TYPO3') || die('Access denied.');
 
@@ -10,7 +11,7 @@ defined('TYPO3') || die('Access denied.');
     $vendor = 'Matero';
     $extKey = 'matero_consent_manager';
 
-    $rendererRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(RendererRegistry::class);
+    $rendererRegistry = GeneralUtility::makeInstance(RendererRegistry::class);
     $rendererRegistry->registerRendererClass(YoutubeRenderer::class);
     $rendererRegistry->registerRendererClass(VimeoRenderer::class);
 })();
