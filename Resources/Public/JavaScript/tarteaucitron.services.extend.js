@@ -1,4 +1,5 @@
 if (tarteaucitron !== undefined) {
+    // Youtube (override)
     tarteaucitron.services.youtube_extended = {
         key: 'youtube_extended',
         type: 'video',
@@ -75,6 +76,7 @@ if (tarteaucitron !== undefined) {
         }
     };
 
+    // Vimeo (override)
     tarteaucitron.services.vimeo_extended = {
         key: 'vimeo_extended',
         type: 'video',
@@ -143,6 +145,24 @@ if (tarteaucitron !== undefined) {
                 elem.style.height = elem.getAttribute('height') + 'px';
                 return tarteaucitron.engage(id);
             });
+        }
+    };
+
+    // Mapbox (custom)
+    tarteaucitron.services.mapbox_api = {
+        'key': 'mapbox_api',
+        'type': 'api',
+        'name': 'Mapbox API',
+        'uri': 'https://www.mapbox.com/legal/privacy#product-privacy-policy',
+        'needConsent': true,
+        'cookies': [],
+        'js': function () {
+            'use strict';
+            // When user allow cookie
+        },
+        'fallback': function () {
+            'use strict';
+            // when use deny cookie
         }
     };
 }
