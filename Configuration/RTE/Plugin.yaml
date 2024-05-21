@@ -1,7 +1,7 @@
 editor:
     config:
         importModules:
-            - { module: '@matero/consent-manager/tac-plugin.js', exports: [ 'Tac' ] }
+            - { module: '@matero/consent-manager/tac-plugin.js', exports: [ 'TarteAuCitron' ] }
 
         contentsCss: ['EXT:matero_consent_manager/Resources/Public/Css/tac.css']
 
