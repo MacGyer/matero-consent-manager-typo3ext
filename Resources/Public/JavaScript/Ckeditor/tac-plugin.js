@@ -2,7 +2,7 @@ import {Plugin} from '@ckeditor/ckeditor5-core';
 import {ButtonView} from '@ckeditor/ckeditor5-ui';
 import {toWidgetEditable} from '@ckeditor/ckeditor5-widget';
 
-export class UserCentrics extends Plugin {
+export class TarteAuCitron extends Plugin {
     init() {
         const editor = this.editor;
         const tag = 'tac';
