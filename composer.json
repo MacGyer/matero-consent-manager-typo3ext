@@ -1,6 +1,5 @@
 {
     "name": "materodev/matero-consent-manager",
-    "version": "1.3.0",
     "type": "typo3-cms-extension",
     "description": "Consent Management for Third Party Services",
     "minimum-stability": "stable",
