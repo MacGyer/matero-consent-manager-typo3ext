@@ -11,5 +11,6 @@ page {
         tarteaucitronServices = EXT:matero_consent_manager/Resources/Public/JavaScript/tarteaucitron.services.extend.js
         tarteaucitronServices.disableCompression = 1
         tarteaucitronServices.excludeFromConcatenation = 1
+        tarteaucitronHandler = EXT:matero_consent_manager/Resources/Public/JavaScript/tarteaucitron.handler.js
     }
 }
