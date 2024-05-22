@@ -1,0 +1,13 @@
+lib.parseFunc_RTE.tags.tarteaucitron = TEXT
+lib.parseFunc_RTE.tags.tarteaucitron {
+    stdWrap.current = 1
+    stdWrap.wrap = <a href="#tac-info-modal-show">|</a>
+#    stdWrap.cObject = CASE
+#    stdWrap.cObject {
+#        key.dataWrap = {parameters:type}
+#        default = TEXT
+#        default.dataWrap = {current}
+#        triggerTaC = TEXT
+#        triggerTaC.dataWrap = <a href="#tac-info-modal-show">{current}</a>
+#    }
+}
