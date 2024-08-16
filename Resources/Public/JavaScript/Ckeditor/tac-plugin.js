@@ -81,7 +81,7 @@ export class TarteAuCitron extends Plugin {
                             return;
                         }
 
-                        const elem = writer.createElement(UserCentrics.tag, { type: 'triggerControlCenter' });
+                        const elem = writer.createElement(TarteAuCitron.tag, { type: 'triggerControlCenter' });
                         writer.wrap(editor.model.document.selection.getFirstRange(), elem);
                     } catch (e) {
                         console.warn(e);
