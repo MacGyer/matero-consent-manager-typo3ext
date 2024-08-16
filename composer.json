@@ -4,7 +4,7 @@
     "description": "Consent Management for Third Party Services",
     "minimum-stability": "stable",
     "license": "proprietary",
-    "homepage": "https://git.matero.dev/project/lofft/lofft-website",
+    "homepage": "https://git.matero.dev/project/matero/matero-consent-manager-typo3ext.git",
     "authors": [
         {
             "name": "Matero GmbH",
@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "typo3/cms-core": "~12.4"
+        "typo3/cms-core": "^12.4"
     },
     "autoload": {
         "psr-4": {
