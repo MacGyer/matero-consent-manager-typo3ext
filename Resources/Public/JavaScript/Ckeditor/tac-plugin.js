@@ -3,11 +3,13 @@ import {ButtonView} from '@ckeditor/ckeditor5-ui';
 import {toWidgetEditable} from '@ckeditor/ckeditor5-widget';
 
 export class TarteAuCitron extends Plugin {
+    static pluginName = 'TarteAuCitron';
+    static tag = 'tarteaucitron';
+
     init() {
         const editor = this.editor;
-        const tag = 'tarteaucitron';
 
-        editor.model.schema.register(tag, {
+        editor.model.schema.register(TarteAuCitron.tag, {
             allowWhere: '$text',
             allowAttributes: ['type'],
             isObject: true,
@@ -15,16 +17,16 @@ export class TarteAuCitron extends Plugin {
         });
 
         editor.model.schema.extend('$text', {
-            allowIn: tag
+            allowIn: TarteAuCitron.tag
         });
 
         editor.conversion
             .for('editingDowncast')
             .elementToElement({
-                model: tag,
+                model: TarteAuCitron.tag,
                 view: (modelItem, conversionApi) => {
                     const {writer} = conversionApi;
-                    const widgetElement = writer.createContainerElement(tag);
+                    const widgetElement = writer.createContainerElement(TarteAuCitron.tag);
                     return toWidgetEditable(widgetElement, writer);
                 }
             });
@@ -32,15 +34,15 @@ export class TarteAuCitron extends Plugin {
         editor.conversion
             .for('dataDowncast')
             .elementToElement({
-                model: tag,
-                view: tag
+                model: TarteAuCitron.tag,
+                view: TarteAuCitron.tag
             });
 
         editor.conversion
             .for('upcast')
             .elementToElement({
-                view: tag,
-                model: tag
+                view: TarteAuCitron.tag,
+                model: TarteAuCitron.tag
             });
 
         editor.conversion
@@ -71,16 +73,19 @@ export class TarteAuCitron extends Plugin {
 
             button.on('execute', () => {
                 editor.model.change(writer => {
-                    const elem = writer.createElement(tag);
-                    const selection = editor.model.document.selection;
-                    let selectedText = [];
-                    for (const item of selection.getFirstRange().getItems()) {
-                        if (item.data !== undefined) {
-                            selectedText.push(item.data);
+                    try {
+                        let cursor = editor.model.document.selection.getFirstPosition();
+                        if (cursor && cursor.parent && cursor.parent.name === TarteAuCitron.tag) {
+                            writer.unwrap(cursor.parent);
+
+                            return;
                         }
+
+                        const elem = writer.createElement(UserCentrics.tag, { type: 'triggerControlCenter' });
+                        writer.wrap(editor.model.document.selection.getFirstRange(), elem);
+                    } catch (e) {
+                        console.warn(e);
                     }
-                    writer.append(selectedText.join(' '), elem);
-                    editor.model.insertObject(elem, null, null, {setSelection: 'on'});
                 });
             });
 
