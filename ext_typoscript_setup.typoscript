@@ -1,5 +1,0 @@
-lib.parseFunc_RTE.tags.tarteaucitron = TEXT
-lib.parseFunc_RTE.tags.tarteaucitron {
-    stdWrap.current = 1
-    stdWrap.wrap = <a href="#tac-info-modal-show">|</a>
-}

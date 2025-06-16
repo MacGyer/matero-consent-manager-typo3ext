@@ -15,9 +15,8 @@ if (tarteaucitron !== undefined) {
                     srcdoc = tarteaucitron.getElemAttr(x, 'srcdoc'),
                     loading = tarteaucitron.getElemAttr(x, 'loading'),
                     video_width = tarteaucitron.getElemAttr(x, 'width'),
-                    frame_width = 'width=',
                     video_height = tarteaucitron.getElemAttr(x, 'height'),
-                    frame_height = 'height=',
+                    styleAttr = '',
                     video_frame,
                     allowfullscreen = tarteaucitron.getElemAttr(x, 'allowfullscreen'),
                     allow = tarteaucitron.getElemAttr(x, 'allow'),
@@ -38,15 +37,11 @@ if (tarteaucitron !== undefined) {
                     return '';
                 }
 
-                if (video_width !== undefined) {
-                    frame_width += '"' + video_width + '" ';
-                } else {
-                    frame_width += '"" ';
+                if (video_width !== '') {
+                    styleAttr += 'width:' + tarteaucitron.getStyleSize(video_width) + ';';
                 }
-                if (video_height !== undefined) {
-                    frame_height += '"' + video_height + '" ';
-                } else {
-                    frame_height += '"" ';
+                if (video_height !== '') {
+                    styleAttr += 'height:' + tarteaucitron.getStyleSize(video_height) + ';';
                 }
 
                 if (srcdoc !== undefined && srcdoc !== null && srcdoc !== "") {
@@ -61,7 +56,7 @@ if (tarteaucitron !== undefined) {
                     loading = '';
                 }
 
-                video_frame = '<iframe frameborder="0" title="' + frame_title + '" ' + frame_width + frame_height + ' src="//www.youtube-nocookie.com/embed/' + video_id + '?' + params + '"' + (allow ? ' allow="' + allow + '"' : ' ') + (allowfullscreen == '0' ? '' : ' webkitallowfullscreen mozallowfullscreen allowfullscreen') + ' ' + srcdoc + ' ' + loading + '></iframe>';
+                video_frame = '<iframe title="' + frame_title + '" style="' + styleAttr + '" ' + ' src="//www.youtube-nocookie.com/embed/' + video_id + '?' + params + '"' + (allow ? ' allow="' + allow + '"' : ' ') + (allowfullscreen == '0' ? '' : ' webkitallowfullscreen mozallowfullscreen allowfullscreen') + ' ' + srcdoc + ' ' + loading + '></iframe>';
                 return video_frame;
             });
         },
@@ -69,8 +64,9 @@ if (tarteaucitron !== undefined) {
             'use strict';
             var id = 'youtube_extended';
             tarteaucitron.fallback(['youtube_extended_player'], function (elem) {
-                elem.style.width = tarteaucitron.getElemAttr(elem, 'width') + 'px';
-                elem.style.height = tarteaucitron.getElemAttr(elem, 'height') + 'px';
+                elem.style.width = tarteaucitron.getStyleSize(tarteaucitron.getElemAttr(elem, 'width'));
+                elem.style.height = tarteaucitron.getStyleSize(tarteaucitron.getElemAttr(elem, 'height'));
+
                 return tarteaucitron.engage(id);
             });
         }
@@ -89,9 +85,8 @@ if (tarteaucitron !== undefined) {
             tarteaucitron.fallback(['vimeo_extended_player'], function (x) {
                 var frame_title = tarteaucitron.getElemAttr(x, 'title') || 'Vimeo iframe',
                     video_width = tarteaucitron.getElemAttr(x, 'width'),
-                    frame_width = 'width=',
                     video_height = tarteaucitron.getElemAttr(x, 'height'),
-                    frame_height = 'height=',
+                    styleAttr = '',
 
                     video_id = tarteaucitron.getElemAttr(x, 'videoID'),
                     video_hash = tarteaucitron.getElemAttr(x, 'data-hash') || '',
@@ -122,17 +117,13 @@ if (tarteaucitron !== undefined) {
 
                 // attributes
                 if (video_width !== undefined) {
-                    frame_width += '"' + video_width + '" ';
-                } else {
-                    frame_width += '"" ';
+                    styleAttr += 'width:' + tarteaucitron.getStyleSize(video_width) + ';';
                 }
                 if (video_height !== undefined) {
-                    frame_height += '"' + video_height + '" ';
-                } else {
-                    frame_height += '"" ';
+                    styleAttr += 'height:' + tarteaucitron.getStyleSize(video_height) + ';';
                 }
 
-                video_frame = '<iframe title="' + frame_title + '" src="//player.vimeo.com/video/' + video_id + video_qs + '" ' + frame_width + frame_height + (allow ? ' allow="' + allow + '"' : ' ') + (video_allowfullscreen == '0' ? '' : ' webkitallowfullscreen mozallowfullscreen allowfullscreen') + '></iframe>';
+                video_frame = '<iframe title="' + frame_title + '" src="//player.vimeo.com/video/' + video_id + video_qs + '" style="' + styleAttr + '" ' + (allow ? ' allow="' + allow + '"' : ' ') + (video_allowfullscreen == '0' ? '' : ' webkitallowfullscreen mozallowfullscreen allowfullscreen') + '></iframe>';
 
                 return video_frame;
             });
@@ -141,8 +132,9 @@ if (tarteaucitron !== undefined) {
             'use strict';
             var id = 'vimeo_extended';
             tarteaucitron.fallback(['vimeo_extended_player'], function (elem) {
-                elem.style.width = elem.getAttribute('width') + 'px';
-                elem.style.height = elem.getAttribute('height') + 'px';
+                elem.style.width = tarteaucitron.getStyleSize(tarteaucitron.getElemAttr(elem, 'width'));
+                elem.style.height = tarteaucitron.getStyleSize(tarteaucitron.getElemAttr(elem, 'height'));
+
                 return tarteaucitron.engage(id);
             });
         }
