@@ -24,3 +24,6 @@ This packages utilizes the consent management platform tarteaucitron.js, develop
 * support TYPO3 13.4 LTS
 * use site sets
 * Implemented version: 1.21
+
+### 13.4.2 - 2025-06-17
+* README update
