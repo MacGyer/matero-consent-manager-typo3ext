@@ -24,7 +24,7 @@ class YoutubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
             'controls' => ArrayUtility::getValueByPath($options, 'controls'),
             'showinfo' => 1,
             'loop' => 0,
-            'autoplay' => ArrayUtility::getValueByPath($options, 'autoplay'),
+            'autoplay' => ArrayUtility::isValidPath($options, 'autoplay') ? ArrayUtility::getValueByPath($options, 'autoplay') : false,
             'allow' => 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; playsinline; fullscreen'
         ];
 

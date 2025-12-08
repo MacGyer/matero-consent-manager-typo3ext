@@ -20,7 +20,7 @@ class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
         $attributes = [
             'class' => 'vimeo_extended_player videoPlayer',
             'videoID' => $videoId,
-            'autoplay' => ArrayUtility::getValueByPath($options, 'autoplay'),
+            'autoplay' => ArrayUtility::isValidPath($options, 'autoplay') ? ArrayUtility::getValueByPath($options, 'autoplay') : false,
             'allow' => 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; playsinline; fullscreen'
         ];
         if ((int)$width > 0) {
