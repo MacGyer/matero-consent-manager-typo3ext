@@ -10,13 +10,16 @@ This packages utilizes the consent management platform tarteaucitron.js, develop
 
 ## Changelog
 
-### 13.4.3 - 2026-05-10
+### 13.4.4 - 2026-05-10
 * Implemented version: 1.32
 
 ### 14.3.0 - 2026-05-09
 * README update
 * Implemented version: 1.32
 * add TYPO3 14.3 compatibility
+
+### 13.4.3 - 2025-06-17
+* improve path handling in VimeoRenderer and YoutubeRenderer
 
 ### 13.4.2 - 2025-06-17
 * README update
